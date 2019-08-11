@@ -3,10 +3,10 @@ from Vec2 import Vec2
 from GameObject import GameObject
 
 class Ship:
-    def __init__(self, hp = 10, game_object = GameObject(), image = 0):
+    def __init__(self, hp = 10, image = 0):
         self.hp = hp
         self.velocity = Vec2()
-        self.go = game_object
+        self.go = GameObject()
 
         if(image == 0):
             self.ship_image = pyglet.resource.image('Ship.png')
@@ -32,3 +32,4 @@ class Ship:
     def draw(self):
         self.ship.update(self.go.position.x, self.go.position.y, -self.go.rotation)
         self.ship.draw()
+        print(self.go.position.x, self.go.position.y)

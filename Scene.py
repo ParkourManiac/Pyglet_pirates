@@ -13,6 +13,9 @@ class SceneManager:
         SceneManager.scene_name = scene_name
         SceneManager.scene_object = None
         SceneManager.scenes = {"IntroScene": IntroScene, "TestShipScene": TestShipScene} # TODO: Make sure to update manually
+        # Loading music
+        music = pyglet.resource.media('Viking_Ship.wav')
+        music.play()
 
     @staticmethod
     def start():
@@ -76,17 +79,21 @@ class Scene:
 
     def key_press(self, symbol, modifiers):
         if(symbol == key.A):
-            print('A')
+            #print('A')
+            pass
         elif(symbol == key.D):
-            print('D')
+            #print('D')
+            pass
         elif(symbol == key.ENTER):
             SceneManager.change_scene_and_start("IntroScene")
 
     def key_release(self, symbol, modifiers):
         if(symbol == key.A):
-            print('a')
+            #print('a')
+            pass
         elif(symbol == key.D):
-            print('d')
+            #print('d')
+            pass
 
     def setup_handlers(self, remove = False): # TODO: Somethings wrong. The handlers are not removed
         if(not remove):
@@ -108,23 +115,15 @@ class IntroScene(Scene):
         self.label = pyglet.text.Label('Hello world', font_name='Times New Roman', font_size=36, x=SceneManager.window.width//2, y=SceneManager.window.height//2, anchor_x='center', anchor_y='center')
         self.dialog = DialogHandler(self.dialog, self.label)
 
-        # Loading resources
-        self.music = pyglet.resource.media('Viking_Ship.wav')
-
     def change_scene(self):
         if(self.id == 0): # Prevents delayed callback event from triggering in the wrong scene
-            #Scene.change_scene(self, 1) # Base method
             SceneManager.change_scene_and_start("TestShipScene")
-            # TODO: Change so that it takes in an object of the scene to be loaded?????
         
     def start(self):
         Scene.start(self) # Base method
 
-        # TODO: Change callback to SceneManager.change_scene("TestShipScene")
-        #self.dialog.callback = self.change_scene
         self.dialog.callback = self.change_scene
         self.dialog.start_dialog()
-        self.music.play()
 
     def end(self):
         self.dialog.remove_dialog_handler()
