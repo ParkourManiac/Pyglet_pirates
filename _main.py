@@ -13,11 +13,12 @@ window.push_handlers(keys)
 
 # Debug FPS
 fps_display = pyglet.window.FPSDisplay(window)
+def fps(): 
+    fps_display.draw()
+window.push_handlers(on_draw=fps) 
 
 SceneManager.setup(window, keys, "IntroScene")
 SceneManager.start()
-# intro_scene = IntroScene(window, keys)
-# test_ship_scene = TestShipScene(window, keys)
 
 if __name__ == "__main__":
     pyglet.app.run()
