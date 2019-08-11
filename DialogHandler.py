@@ -11,6 +11,9 @@ class DialogHandler:
         self.label.text = self.dialog_array[0]
         pyglet.clock.schedule_once(self.change_dialog, self.dialog_time)
 
+    def remove_dialog_handler(self):
+        pyglet.clock.unschedule(self.change_dialog)
+
     def callback(self):
         pass
         

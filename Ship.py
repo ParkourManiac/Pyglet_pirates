@@ -7,17 +7,22 @@ class Ship:
         self.hp = hp
         self.velocity = Vec2()
         self.go = game_object
+
         if(image == 0):
-            self.ship = pyglet.resource.image('Ship.png')
+            self.ship_image = pyglet.resource.image('Ship.png')
         else:
-            self.ship = image
+            self.ship_image = image
         pass
+        self.ship_image.anchor_x = self.ship_image.width // 2
+        self.ship_image.anchor_y = self.ship_image.height // 2
+        self.ship = pyglet.sprite.Sprite(self.ship_image)
 
     def move(self):
         self.go.position += self.velocity.rotated(self.go.rotation)
         pass
 
     def shoot(self, projectile):
+        # canon = pyglet.resource.media('canon.wav', streaming = false) # streaming = false For gunshots and etc
         pass
 
     def steer(self, degree):
@@ -25,4 +30,5 @@ class Ship:
         pass
 
     def draw(self):
-        self.ship.blit(self.go.position.x, self.go.position.y)
+        self.ship.update(self.go.position.x, self.go.position.y, -self.go.rotation)
+        self.ship.draw()
