@@ -4,6 +4,7 @@ from DialogHandler import DialogHandler
 from Ship import Ship
 from Vec2 import Vec2
 from Input import Input
+from MusicManager import MusicManager
 
 class SceneManager:
     @staticmethod
@@ -13,9 +14,7 @@ class SceneManager:
         SceneManager.scene_name = scene_name
         SceneManager.scene_object = None
         SceneManager.scenes = {"IntroScene": IntroScene, "TestShipScene": TestShipScene} # TODO: Make sure to update manually
-        # Loading music
-        music = pyglet.resource.media('Viking_Ship.wav')
-        music.play()
+        SceneManager.music_manager = MusicManager()
 
     @staticmethod
     def start():

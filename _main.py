@@ -1,5 +1,6 @@
 import pyglet
 from pyglet.window import key
+import glob
 from DialogHandler import DialogHandler
 from Scene import SceneManager, Scene, IntroScene, TestShipScene
 
@@ -21,8 +22,9 @@ def fps():
 window.push_handlers(on_draw=fps)
 
 SceneManager.setup(window, keys, "IntroScene")
+SceneManager.music_manager.read_songs('res\\audio\\', '.wav') # TODO: Change glob to pyglet function!!!
 SceneManager.start()
-
+"Test/test".strip("Test/")
 if __name__ == "__main__":
     pyglet.app.run()
 
